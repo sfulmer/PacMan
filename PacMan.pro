@@ -16,10 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Eatable.cpp \
     Fruit.cpp \
     GameModel.cpp \
     GamePanel.cpp \
     Ghost.cpp \
+    Liveable.cpp \
     MoveablePiece.cpp \
     Observable.cpp \
     PacDot.cpp \
@@ -32,11 +34,13 @@ SOURCES += \
     GameWindow.cpp
 
 HEADERS += \
+    Eatable.h \
     Fruit.h \
     GameModel.h \
     GamePanel.h \
     GameWindow.h \
     Ghost.h \
+    Liveable.h \
     MoveablePiece.h \
     Observable.h \
     PacDot.h \
@@ -53,3 +57,14 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    fonts/emulogic.ttf \
+    images/Fruit.png \
+    images/GameBoard.jpg \
+    images/PacDot.png \
+    images/PacMan.png \
+    images/PowerPellet.png
+
+RESOURCES += \
+    PacMan.qrc

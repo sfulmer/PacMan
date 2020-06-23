@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Eatable.h"
 #include "Piece.h"
 
 namespace net
@@ -10,18 +11,23 @@ namespace net
         {
             namespace pacman
             {
+                class PacManController;
+
                 namespace model
                 {
-                    class PacDot : public Piece
-                    {
-                        bool mbEaten;
-                    public:
-                        PacDot(const int iX = -1, const int iY = -1, const bool bEaten = false);
+                    class GameModel;
 
-                        bool isEaten() const;
-                        void setEaten(const bool bEaten);
+                    class PacDot : public Eatable, public Piece
+                    {
+                    public:
+                        PacDot(const int iX = -1, const int iY = -1);
+                        PacDot(const PacDot &refCopy);
+                        PacDot(PacDot &refToMove);
 
                         virtual void collided(Piece &refCollider);
+
+                        PacManController &getController();
+                        GameModel &getModel();
                     };
                 }
             }

@@ -14,12 +14,15 @@ namespace net
             {
                 namespace model
                 {
-                    class Piece : public Observable
+                    class Piece : virtual public Observable
                     {
                         int miX, miY;
                         unsigned muiPoints;
                     public:
                         Piece(const int iX = -1, const int iY = -1, const unsigned uiPoints = 0);
+                        Piece(const Piece &refCopy);
+                        Piece(Piece &refToMove);
+                        virtual ~Piece() { }
 
                         unsigned getPoints() const;
                         int getX() const;

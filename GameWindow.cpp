@@ -19,8 +19,7 @@ GamePanel *GameWindow::getMainPanel()
 
 void GameWindow::initControls()
 {
-    setMinimumHeight(512);
-    setMinimumWidth(512);
+    setMinimumSize(QSize(512, 550));
 
     setCentralWidget(getMainPanel());
 }

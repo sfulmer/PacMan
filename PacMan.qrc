@@ -1,0 +1,10 @@
+<RCC>
+    <qresource>
+        <file>fonts/emulogic.ttf</file>
+        <file>images/Fruit.png</file>
+        <file>images/GameBoard.jpg</file>
+        <file>images/PacDot.png</file>
+        <file>images/PacMan.png</file>
+        <file>images/PowerPellet.png</file>
+    </qresource>
+</RCC>

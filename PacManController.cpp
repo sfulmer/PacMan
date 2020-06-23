@@ -16,3 +16,8 @@ void PacManController::exit()
 {
     getApplication().exit();
 }
+
+GameModel &PacManController::getModel()
+{
+    return(mObjModel);
+}

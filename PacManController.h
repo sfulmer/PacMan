@@ -1,5 +1,9 @@
 #pragma once
 
+#include "GameModel.h"
+
+using net::draconia::games::pacman::model::GameModel;
+
 namespace net
 {
     namespace draconia
@@ -12,12 +16,14 @@ namespace net
 
                 class PacManController
                 {
+                    GameModel mObjModel;
                     PacManApp &mRefApp;
                 protected:
                     PacManApp &getApplication();
                 public:
                     PacManController(PacManApp &refApp);
                     void exit();
+                    GameModel &getModel();
                 };
             }
         }

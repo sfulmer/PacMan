@@ -19,7 +19,9 @@ namespace net
                     private:
                         Direction meDirection;
                     public:
-                        MoveablePiece(const int i = -1, const int iY = -1, const Direction eDirection = NoDirection, const unsigned uiPoints = 0);
+                        MoveablePiece(const int iX = -1, const int iY = -1, const Direction eDirection = NoDirection, const unsigned uiPoints = 0);
+                        MoveablePiece(const MoveablePiece &refCopy);
+                        MoveablePiece(MoveablePiece &refToMove);
 
                         Direction getDirection() const;
                         void setDirection(const Direction eDirection);

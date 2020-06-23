@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Liveable.h"
 #include "MoveablePiece.h"
 
 namespace net
@@ -10,15 +11,31 @@ namespace net
         {
             namespace pacman
             {
+                class PacManController;
+
                 namespace model
                 {
-                    class PacMan : public MoveablePiece
+                    class GameModel;
+
+                    class PacMan : public Liveable, public MoveablePiece
                     {
                         bool mbPoweredUp;
                         int miSeconds;
                         unsigned muiLives;
                     public:
-                        PacMan(const int iX = -1, const int iY = -1, const Direction eDirection = NoDirection, const unsigned uiLives = 3, const int iSeconds = -1);
+                        PacMan(const int iX = -1, const int iY = -1, const Direction eDirection = NoDirection, const unsigned uiLives = 3);
+                        PacMan(const PacMan&refCopy);
+                        PacMan(PacMan &refToMove);
+
+                        virtual void collided(Piece &refCollider);
+                        virtual void die();
+                        PacManController &getController();
+                        GameModel &getGameModel();
+                        int getSeconds() const;
+                        bool isPoweredUp() const;
+                        virtual void revive();
+                        void setPoweredUp(const bool bPoweredUp);
+                        void setSeconds(const int iSeconds);
                     };
                 }
             }
