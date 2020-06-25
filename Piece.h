@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Observable.h"
+#include <QImage>
 
 using net::draconia::util::Observable;
 
@@ -24,6 +25,7 @@ namespace net
                         Piece(Piece &refToMove);
                         virtual ~Piece() { }
 
+                        virtual QImage getImage() = 0;
                         unsigned getPoints() const;
                         int getX() const;
                         int getY() const;

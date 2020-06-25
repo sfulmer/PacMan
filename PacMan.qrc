@@ -1,10 +1,20 @@
 <RCC>
     <qresource>
         <file>fonts/emulogic.ttf</file>
-        <file>images/Fruit.png</file>
         <file>images/GameBoard.jpg</file>
         <file>images/PacDot.png</file>
         <file>images/PacMan.png</file>
         <file>images/PowerPellet.png</file>
+        <file>images/fruit/Apple.png</file>
+        <file>images/fruit/Banana.png</file>
+        <file>images/fruit/Cherry.png</file>
+        <file>images/fruit/Peach.png</file>
+        <file>images/fruit/Pear.png</file>
+        <file>images/fruit/Pretzel.png</file>
+        <file>images/fruit/Strawberry.png</file>
+        <file>images/ghosts/Blinky.png</file>
+        <file>images/ghosts/Clyde.png</file>
+        <file>images/ghosts/Inky.png</file>
+        <file>images/ghosts/Pinky.png</file>
     </qresource>
 </RCC>

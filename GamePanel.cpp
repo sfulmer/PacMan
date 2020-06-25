@@ -1,11 +1,14 @@
 #include "GamePanel.h"
 #include "GameWindow.h"
+#include "Ghost.h"
 #include "PacManApp.h"
+#include <QDebug>
 #include <QFontDatabase>
 #include <QPaintEvent>
 #include <QPainter>
 
 using net::draconia::games::pacman::PacManController;
+using net::draconia::games::pacman::model::Ghost;
 using namespace net::draconia::games::pacman::ui;
 
 PacManController &GamePanel::getController()
@@ -13,9 +16,12 @@ PacManController &GamePanel::getController()
     return(mRefController);
 }
 
-QImage &GamePanel::getFruitImage()
+QTimer *GamePanel::getEventTimer()
 {
-    return(mImgFruit);
+    if(mTimerEvents == nullptr)
+        mTimerEvents = new QTimer(this);
+
+    return(mTimerEvents);
 }
 
 QImage &GamePanel::getGameBoardImage()
@@ -35,19 +41,9 @@ QFont &GamePanel::getGameFont()
     return(*mPtrGameFont);
 }
 
-QImage &GamePanel::getPacDotImage()
+GameModel &GamePanel::getModel()
 {
-    return(mImgPacDot);
-}
-
-QImage &GamePanel::getPacManImage()
-{
-    return(mImgPacMan);
-}
-
-QImage &GamePanel::getPowerPelletImage()
-{
-    return(mImgPowerPellet);
+    return(getController().getModel());
 }
 
 void GamePanel::initControls()
@@ -70,6 +66,13 @@ void GamePanel::paintEvent(QPaintEvent *event)
 
     painter.drawImage(QRectF(event->rect().x(), event->rect().y() + 30, 512, 512), getGameBoardImage());
 
+    for(const Ghost *ptrGhost : getModel().getGhosts())
+        {
+        Ghost &refGhost = const_cast<Ghost &>(*ptrGhost);
+
+        painter.drawImage(QRectF(refGhost.getX(), refGhost.getY(), 18, 18), refGhost.getImage());
+        }
+
     painter.restore();
 }
 
@@ -80,17 +83,24 @@ GamePanel::GamePanel(GameWindow *parent)
 GamePanel::GamePanel(GameWindow *parent, PacManController &refController)
     :   QWidget(parent)
     ,   mRefController(refController)
-    ,   mPtrGameFont(nullptr)
-    ,   mImgFruit(":/images/fruit.png")
     ,   mImgGameBoard(":/images/GameBoard.jpg")
-    ,   mImgPacDot(":/images/pacdot.png")
-    ,   mImgPacMan(":/images/pacman.png")
-    ,   mImgPowerPellet(":/images/powerpellet.png")
+    ,   mPtrGameFont(nullptr)
 {
     initPanel();
 }
 
+void GamePanel::doFrame()
+{ }
+
 QSize GamePanel::sizeHint() const
 {
-    return(QSize(512, 550));
+    return(QSize(512, 650));
+}
+
+void GamePanel::start()
+{
+    getModel().setStarted(true);
+
+    connect(getEventTimer(), &QTimer::timeout, this, &GamePanel::doFrame);
+    getEventTimer()->start(500);
 }

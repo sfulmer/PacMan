@@ -1,9 +1,11 @@
 #pragma once
 
+#include "GameModel.h"
 #include "PacManController.h"
 #include <QFont>
 #include <QImage>
 #include <QSharedPointer>
+#include <QTimer>
 #include <QWidget>
 
 namespace net
@@ -22,16 +24,15 @@ namespace net
                     {
                         Q_OBJECT
                         PacManController &mRefController;
+                        QImage mImgGameBoard;
                         QSharedPointer<QFont> mPtrGameFont;
-                        QImage mImgFruit, mImgGameBoard, mImgPacDot, mImgPacMan, mImgPowerPellet;
+                        QTimer *mTimerEvents;
                     protected:
                         PacManController &getController();
-                        QImage &getFruitImage();
+                        QTimer *getEventTimer();
                         QImage &getGameBoardImage();
                         QFont &getGameFont();
-                        QImage &getPacDotImage();
-                        QImage &getPacManImage();
-                        QImage &getPowerPelletImage();
+                        GameModel &getModel();
                         void initControls();
                         void initPanel();
                         void paintEvent(QPaintEvent *event);
@@ -39,7 +40,9 @@ namespace net
                         GamePanel(GameWindow *parent);
                         GamePanel(GameWindow *parent, PacManController &refController);
 
+                        void doFrame();
                         QSize sizeHint() const;
+                        void start();
                     signals:
                     };
                 }

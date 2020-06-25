@@ -1,9 +1,19 @@
+#include "Blinky.h"
+#include "Clyde.h"
+#include "Inky.h"
 #include "GameModel.h"
+#include "Pinky.h"
 
 using namespace net::draconia::games::pacman::model;
 
-QList<Ghost> &GameModel::getGhostsInternal()
+QList<Ghost *> &GameModel::getGhostsInternal()
 {
+    if(mLstGhosts.isEmpty())
+        setGhosts(  {   new Blinky()
+                    ,   new Clyde()
+                    ,   new Inky()
+                    ,   new Pinky()});
+
     return(mLstGhosts);
 }
 
@@ -12,7 +22,7 @@ QList<Piece *> &GameModel::getPiecesInternal()
     return(mLstPieces);
 }
 
-void GameModel::setGhosts(const QList<Ghost> &lstGhosts)
+void GameModel::setGhosts(const QList<Ghost *> &lstGhosts)
 {
     mLstGhosts = lstGhosts;
 
@@ -56,7 +66,7 @@ unsigned GameModel::getCurrentScore() const
     return(muiCurrentScore);
 }
 
-const QList<Ghost> &GameModel::getGhosts()
+const QList<Ghost *> &GameModel::getGhosts()
 {
     return(getGhostsInternal());
 }
@@ -81,6 +91,11 @@ const QList<Piece *> &GameModel::getPieces()
     return(getPiecesInternal());
 }
 
+bool GameModel::isStarted() const
+{
+    return(mbStarted);
+}
+
 void GameModel::setCurrentScore(const unsigned uiCurrentScore)
 {
     muiCurrentScore = uiCurrentScore;
@@ -103,4 +118,12 @@ void GameModel::setLevel(const unsigned uiLevel)
 
     setChanged();
     notifyObservers("Level");
+}
+
+void GameModel::setStarted(const bool bStarted)
+{
+    mbStarted = bStarted;
+
+    setChanged();
+    notifyObservers("Started");
 }

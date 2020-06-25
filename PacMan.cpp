@@ -12,6 +12,7 @@ PacMan::PacMan(const int iX, const int iY, const Direction eDirection, const uns
     ,   MoveablePiece(iX, iY, eDirection)
     ,   mbPoweredUp(false)
     ,   miSeconds(-1)
+    ,   mPtrImage(nullptr)
 { }
 
 PacMan::PacMan(const PacMan&refCopy)
@@ -19,6 +20,7 @@ PacMan::PacMan(const PacMan&refCopy)
     ,   MoveablePiece(refCopy)
     ,   mbPoweredUp(refCopy.isPoweredUp())
     ,   miSeconds(refCopy.getSeconds())
+    ,   mPtrImage(refCopy.mPtrImage)
 { }
 
 PacMan::PacMan(PacMan &refToMove)
@@ -26,7 +28,23 @@ PacMan::PacMan(PacMan &refToMove)
     ,   MoveablePiece(refToMove)
     ,   mbPoweredUp(refToMove.isPoweredUp())
     ,   miSeconds(refToMove.getSeconds())
-{ }
+    ,   mPtrImage(refToMove.mPtrImage)
+{
+    if(refToMove.mPtrImage != nullptr)
+        {
+        delete refToMove.mPtrImage;
+        refToMove.mPtrImage = nullptr;
+        }
+}
+
+PacMan::~PacMan()
+{
+    if(mPtrImage != nullptr)
+        {
+        delete mPtrImage;
+        mPtrImage = nullptr;
+        }
+}
 
 void PacMan::collided(Piece &refCollider)
 {
@@ -57,6 +75,14 @@ PacManController &PacMan::getController()
 GameModel &PacMan::getGameModel()
 {
     return(getController().getModel());
+}
+
+QImage PacMan::getImage()
+{
+    if(mPtrImage == nullptr)
+        mPtrImage = new QImage(":/images/PacMan.png");
+
+    return(*mPtrImage);
 }
 
 int PacMan::getSeconds() const

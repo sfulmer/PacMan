@@ -8,7 +8,12 @@ Ghost::Ghost(const int iX, const int iY, const Direction eDirection, const QStri
     ,   MoveablePiece(iX, iY, eDirection, 0)
     ,   mbVulnerable(false)
     ,   meColor(eColor)
+    ,   mPtrImage(nullptr)
     ,   msName(sName)
+{ }
+
+Ghost::Ghost(const QString &sName, const Color eColor)
+    :   Ghost(-1, -1, NoDirection, sName, eColor)
 { }
 
 Ghost::Ghost(const Ghost &refCopy)
@@ -16,6 +21,7 @@ Ghost::Ghost(const Ghost &refCopy)
     ,   MoveablePiece(refCopy)
     ,   mbVulnerable(refCopy.isVulnerable())
     ,   meColor(refCopy.getColor())
+    ,   mPtrImage(refCopy.mPtrImage)
     ,   msName(refCopy.getName())
 { }
 
@@ -24,8 +30,24 @@ Ghost::Ghost(Ghost &refToMove)
     ,   MoveablePiece(refToMove)
     ,   mbVulnerable(refToMove.isVulnerable())
     ,   meColor(refToMove.getColor())
+    ,   mPtrImage(refToMove.mPtrImage)
     ,   msName(refToMove.getName())
-{ }
+{
+    if(refToMove.mPtrImage != nullptr)
+        {
+        delete refToMove.mPtrImage;
+        refToMove.mPtrImage = nullptr;
+        }
+}
+
+Ghost::~Ghost()
+{
+    if(mPtrImage != nullptr)
+        {
+        delete mPtrImage;
+        mPtrImage = nullptr;
+        }
+}
 
 void Ghost::collided(Piece &refCollider)
 {
@@ -46,6 +68,14 @@ void Ghost::die()
 Ghost::Color Ghost::getColor() const
 {
     return(meColor);
+}
+
+QImage Ghost::getImage()
+{
+    if(mPtrImage == nullptr)
+        mPtrImage = new QImage(":/images/ghosts/" + getName() + ".png");
+
+    return(*mPtrImage);
 }
 
 QString &Ghost::getName() const
