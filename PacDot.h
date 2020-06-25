@@ -32,6 +32,8 @@ namespace net
                         PacManController &getController();
                         virtual QImage getImage();
                         GameModel &getModel();
+                        virtual QSize getSize() const;
+                        virtual void render(qint64 frame, QPainter &refPainter);
                     };
                 }
             }

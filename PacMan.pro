@@ -70,7 +70,8 @@ DISTFILES += \
     fonts/emulogic.ttf \
     images/GameBoard.jpg \
     images/PacDot.png \
-    images/PacMan.png \
+    images/PacMan/Closed.png \
+    images/PacMan/Open.png \
     images/PowerPellet.png \
     images/fruit/Apple.png \
     images/fruit/Banana.png \
@@ -79,10 +80,17 @@ DISTFILES += \
     images/fruit/Pear.png \
     images/fruit/Pretzel.png \
     images/fruit/Strawberry.png \
-    images/ghosts/Blinky.png \
     images/ghosts/Clyde.png \
     images/ghosts/Inky.png \
-    images/ghosts/Pinky.png
+    images/ghosts/Normal/Blinky.png \
+    images/ghosts/Normal/Clyde.png \
+    images/ghosts/Normal/Inky.png \
+    images/ghosts/Normal/Pinky.png \
+    images/ghosts/Pinky.png \
+    images/ghosts/Vulnerable/Blinky.png \
+    images/ghosts/Vulnerable/Clyde.png \
+    images/ghosts/Vulnerable/Inky.png \
+    images/ghosts/Vulnerable/Pinky.png
 
 RESOURCES += \
     PacMan.qrc

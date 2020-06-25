@@ -2,6 +2,7 @@
 #include "Clyde.h"
 #include "Inky.h"
 #include "GameModel.h"
+#include "PacDot.h"
 #include "Pinky.h"
 
 using namespace net::draconia::games::pacman::model;
@@ -19,6 +20,104 @@ QList<Ghost *> &GameModel::getGhostsInternal()
 
 QList<Piece *> &GameModel::getPiecesInternal()
 {
+    if(mLstPieces.isEmpty())
+        {
+        QList<Piece *> lstPieces;
+
+        for(unsigned uiXMax = 240, uiX = 30; uiX < uiXMax; uiX += 18)
+            {
+            lstPieces.append(new PacDot(uiX, 55));
+            lstPieces.append(new PacDot(uiX, 365));
+            }
+
+        for(unsigned uiXMax = 490, uiX = 282; uiX < uiXMax; uiX += 18)
+            {
+            lstPieces.append(new PacDot(uiX, 55));
+            lstPieces.append(new PacDot(uiX, 365));
+            }
+
+        for(unsigned uiXMax = 490, uiX = 30; uiX < uiXMax; uiX += 18)
+            {
+            lstPieces.append(new PacDot(uiX, 120));
+            lstPieces.append(new PacDot(uiX, 515));
+            }
+
+        for(unsigned uiXMax = 125, uiX = 30; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 170));
+
+        for(unsigned uiXMax = 240, uiX = 174; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 170));
+
+        for(unsigned uiXMax = 340, uiX = 282; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 170));
+
+        for(unsigned uiXMax = 490, uiX = 390; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 170));
+
+        for(unsigned uiXMax = 350, uiX = 174; uiX < uiXMax; uiX += 18)
+            {
+            lstPieces.append(new PacDot(uiX, 220));
+            lstPieces.append(new PacDot(uiX, 315));
+            }
+
+        for(unsigned uiXMax = 190, uiX = 12; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 265));
+
+        for(unsigned uiXMax = 500, uiX = 336; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 265));
+
+        for(unsigned uiXMax = 80, uiX = 30; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 415));
+
+        for(unsigned uiXMax = 400, uiX = 120; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 415));
+
+        for(unsigned uiXMax = 490, uiX = 444; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 415));
+
+        for(unsigned uiXMax = 135, uiX = 30; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 465));
+
+        for(unsigned uiXMax = 240, uiX = 174; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 465));
+
+        for(unsigned uiXMax = 340, uiX = 282; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 465));
+
+        for(unsigned uiXMax = 490, uiX = 390; uiX < uiXMax; uiX += 18)
+            lstPieces.append(new PacDot(uiX, 465));
+
+        for(unsigned uiYMax = 105, uiY = 73; uiY < uiYMax; uiY += 15)
+            {
+            lstPieces.append(new PacDot(30, uiY));
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(228, uiY));
+            lstPieces.append(new PacDot(282, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            lstPieces.append(new PacDot(480, uiY));
+            }
+
+        for(unsigned uiYMax = 160, uiY = 137; uiY < uiYMax; uiY += 16)
+            {
+            lstPieces.append(new PacDot(30, uiY));
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(174, uiY));
+            lstPieces.append(new PacDot(336, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            lstPieces.append(new PacDot(480, uiY));
+            }
+
+        for(unsigned uiYMax = 210, uiY = 186; uiY < uiYMax; uiY += 17)
+            {
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(228, uiY));
+            lstPieces.append(new PacDot(282, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            }
+
+        setPieces(lstPieces);
+        }
+
     return(mLstPieces);
 }
 

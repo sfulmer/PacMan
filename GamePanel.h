@@ -25,11 +25,13 @@ namespace net
                         Q_OBJECT
                         PacManController &mRefController;
                         QImage mImgGameBoard;
+                        qint64 miFrame;
                         QSharedPointer<QFont> mPtrGameFont;
                         QTimer *mTimerEvents;
                     protected:
                         PacManController &getController();
                         QTimer *getEventTimer();
+                        qint64 getFrame();
                         QImage &getGameBoardImage();
                         QFont &getGameFont();
                         GameModel &getModel();

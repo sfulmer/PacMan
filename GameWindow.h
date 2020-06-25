@@ -2,7 +2,9 @@
 
 #include "GamePanel.h"
 #include "PacManController.h"
+#include <QAction>
 #include <QMainWindow>
+#include <QMenu>
 
 namespace net
 {
@@ -19,9 +21,15 @@ namespace net
                         Q_OBJECT
                         GamePanel *mPnlMain;
                         PacManController &mRefController;
+                        QAction *mActExit;
+                        QMenu *mMnuPacMan;
                     protected:
+                        void closeEvent(QCloseEvent *event);
+                        void exitClicked();
                         PacManController &getController();
+                        QAction *getExitAction();
                         GamePanel *getMainPanel();
+                        QMenu *getPacManMenu();
                         void initControls();
                         void initMenus();
                         void initWindow();

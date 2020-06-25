@@ -67,3 +67,19 @@ QImage Fruit::getImage()
 
     return(*mPtrImage);
 }
+
+QSize Fruit::getSize() const
+{
+    return(QSize(9, 9));
+}
+
+void Fruit::render(qint64 frame, QPainter &refPainter)
+{
+    Q_UNUSED(frame);
+
+    refPainter.save();
+
+    refPainter.drawImage(QRectF(getTopLeft(), getSize()), getImage());
+
+    refPainter.restore();
+}

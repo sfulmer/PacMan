@@ -66,3 +66,20 @@ GameModel &PacDot::getModel()
 {
     return(getController().getModel());
 }
+
+QSize PacDot::getSize() const
+{
+    return(QSize(6, 6));
+}
+
+void PacDot::render(qint64 frame, QPainter &refPainter)
+{
+    Q_UNUSED(frame);
+
+    refPainter.save();
+
+    if(!isEaten())
+        refPainter.drawImage(QRectF(getTopLeft(), getSize()), getImage());
+
+    refPainter.restore();
+}

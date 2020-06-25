@@ -25,6 +25,8 @@ namespace net
 
                         virtual void collided(Piece &refCollider);
                         virtual QImage getImage();
+                        virtual QSize getSize() const;
+                        virtual void render(qint64 frame, QPainter &refPainter);
                     };
                 }
             }

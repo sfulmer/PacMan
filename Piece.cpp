@@ -28,6 +28,11 @@ unsigned Piece::getPoints() const
     return(muiPoints);
 }
 
+QPoint Piece::getTopLeft() const
+{
+    return(QPoint(getX(), getY()));
+}
+
 int Piece::getX() const
 {
     return(miX);

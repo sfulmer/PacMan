@@ -48,3 +48,20 @@ QImage PowerPellet::getImage()
 
     return(*mPtrImage);
 }
+
+QSize PowerPellet::getSize() const
+{
+    return(QSize(6, 6));
+}
+
+void PowerPellet::render(qint64 frame, QPainter &refPainter)
+{
+    Q_UNUSED(frame);
+
+    refPainter.save();
+
+    if(!isEaten())
+        refPainter.drawImage(QRectF(getTopLeft(), getSize()), getImage());
+
+    refPainter.restore();
+}

@@ -2,13 +2,14 @@
 #include "GameWindow.h"
 #include "Ghost.h"
 #include "PacManApp.h"
+#include "Piece.h"
 #include <QDebug>
 #include <QFontDatabase>
 #include <QPaintEvent>
 #include <QPainter>
 
 using net::draconia::games::pacman::PacManController;
-using net::draconia::games::pacman::model::Ghost;
+using namespace net::draconia::games::pacman::model;
 using namespace net::draconia::games::pacman::ui;
 
 PacManController &GamePanel::getController()
@@ -22,6 +23,11 @@ QTimer *GamePanel::getEventTimer()
         mTimerEvents = new QTimer(this);
 
     return(mTimerEvents);
+}
+
+qint64 GamePanel::getFrame()
+{
+    return(miFrame);
 }
 
 QImage &GamePanel::getGameBoardImage()
@@ -70,7 +76,14 @@ void GamePanel::paintEvent(QPaintEvent *event)
         {
         Ghost &refGhost = const_cast<Ghost &>(*ptrGhost);
 
-        painter.drawImage(QRectF(refGhost.getX(), refGhost.getY(), 18, 18), refGhost.getImage());
+        refGhost.render(getFrame(), painter);
+        }
+
+    for(const Piece *ptrPiece : getModel().getPieces())
+        {
+        Piece &refPiece = const_cast<Piece &>(*ptrPiece);
+
+        refPiece.render(getFrame(), painter);
         }
 
     painter.restore();
@@ -84,6 +97,7 @@ GamePanel::GamePanel(GameWindow *parent, PacManController &refController)
     :   QWidget(parent)
     ,   mRefController(refController)
     ,   mImgGameBoard(":/images/GameBoard.jpg")
+    ,   miFrame(0)
     ,   mPtrGameFont(nullptr)
 {
     initPanel();
