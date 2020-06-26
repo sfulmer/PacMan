@@ -115,6 +115,64 @@ QList<Piece *> &GameModel::getPiecesInternal()
             lstPieces.append(new PacDot(390, uiY));
             }
 
+        for(unsigned uiYMax = 275, uiY = 220; uiY < uiYMax; uiY += 15)
+            {
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            }
+
+        for(unsigned uiYMax = 275, uiY = 235; uiY < uiYMax; uiY += 15)
+            {
+            lstPieces.append(new PacDot(174, uiY));
+            lstPieces.append(new PacDot(336, uiY));
+            }
+
+        for(unsigned uiYMax = 360, uiY = 282; uiY < uiYMax; uiY += 17)
+            {
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            }
+
+        for(unsigned uiYMax = 310, uiY = 282; uiY < uiYMax; uiY += 15)
+            {
+            lstPieces.append(new PacDot(174, uiY));
+            lstPieces.append(new PacDot(336, uiY));
+            }
+
+        for(unsigned uiYMax = 360, uiY = 332; uiY < uiYMax; uiY += 17)
+            {
+            lstPieces.append(new PacDot(174, uiY));
+            lstPieces.append(new PacDot(336, uiY));
+            }
+
+        for(unsigned uiYMax = 410, uiY = 385; uiY < uiYMax; uiY += 15)
+            {
+            lstPieces.append(new PacDot(30, uiY));
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(228, uiY));
+            lstPieces.append(new PacDot(282, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            lstPieces.append(new PacDot(480, uiY));
+            }
+
+        for(unsigned uiYMax = 460, uiY = 432; uiY < uiYMax; uiY += 17)
+            {
+            lstPieces.append(new PacDot(66, uiY));
+            lstPieces.append(new PacDot(120, uiY));
+            lstPieces.append(new PacDot(174, uiY));
+            lstPieces.append(new PacDot(336, uiY));
+            lstPieces.append(new PacDot(390, uiY));
+            lstPieces.append(new PacDot(444, uiY));
+            }
+
+        for(unsigned uiYMax = 500, uiY = 480; uiY < uiYMax; uiY += 17)
+            {
+            lstPieces.append(new PacDot(30, uiY));
+            lstPieces.append(new PacDot(228, uiY));
+            lstPieces.append(new PacDot(282, uiY));
+            lstPieces.append(new PacDot(480, uiY));
+            }
+
         setPieces(lstPieces);
         }
 
