@@ -22,13 +22,16 @@ namespace net
                     class GameModel : public Observable
                     {
                         bool mbStarted;
+                        QList<Fruit *> mLstFruit;
                         QList<Ghost *> mLstGhosts;
                         QList<Piece *> mLstPieces;
                         PacMan mObjPacMan;
                         unsigned muiCurrentScore, muiHighScore, muiLevel;
                     protected:
+                        QList<Fruit *> &getFruitInternal();
                         QList<Ghost *> &getGhostsInternal();
                         QList<Piece *> &getPiecesInternal();
+                        void setFruit(const QList<Fruit *> &lstFruit);
                         void setGhosts(const QList<Ghost *> &lstGhosts);
                         void setPacMan(const PacMan &refPacMan);
                         void setPieces(const QList<Piece *> &lstPieces);
@@ -37,6 +40,7 @@ namespace net
                         ~GameModel();
 
                         unsigned getCurrentScore() const;
+                        const QList<Fruit *> &getFruit();
                         const QList<Ghost *> &getGhosts();
                         unsigned getHighScore() const;
                         unsigned getLevel() const;

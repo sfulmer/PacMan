@@ -108,7 +108,7 @@ QString &Ghost::getName() const
 
 QSize Ghost::getSize() const
 {
-    return(QSize(18, 18));
+    return(QSize(24, 24));
 }
 
 bool Ghost::isVulnerable() const

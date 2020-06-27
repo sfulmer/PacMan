@@ -51,7 +51,7 @@ QImage PowerPellet::getImage()
 
 QSize PowerPellet::getSize() const
 {
-    return(QSize(6, 6));
+    return(QSize(12, 12));
 }
 
 void PowerPellet::render(qint64 frame, QPainter &refPainter)

@@ -3,7 +3,7 @@
 using namespace net::draconia::games::pacman::model;
 
 Clyde::Clyde()
-    :   Ghost(240, 260, NoDirection, "Clyde")
+    :   Ghost(215, 260, NoDirection, "Clyde")
 { }
 
 Clyde::Clyde(const Clyde &refCopy)

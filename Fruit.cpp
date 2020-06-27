@@ -61,8 +61,9 @@ QImage Fruit::getImage()
         QFileInfoList fruits = dirFruit.entryInfoList();
         int iSelectedFruitIndex = getRNG()->generate64() % fruits.size();
         QFileInfo fileFruit = fruits[iSelectedFruitIndex];
+        QString sFruitPath = fileFruit.absoluteFilePath();
 
-        mPtrImage = new QImage(fileFruit.absolutePath());
+        mPtrImage = new QImage(sFruitPath);
         }
 
     return(*mPtrImage);
@@ -70,7 +71,7 @@ QImage Fruit::getImage()
 
 QSize Fruit::getSize() const
 {
-    return(QSize(9, 9));
+    return(QSize(15, 15));
 }
 
 void Fruit::render(qint64 frame, QPainter &refPainter)

@@ -4,8 +4,17 @@
 #include "GameModel.h"
 #include "PacDot.h"
 #include "Pinky.h"
+#include "PowerPellet.h"
 
 using namespace net::draconia::games::pacman::model;
+
+QList<Fruit *> &GameModel::getFruitInternal()
+{
+    if(mLstFruit.isEmpty())
+        setFruit({ new Fruit(245, 310) });
+
+    return(mLstFruit);
+}
 
 QList<Ghost *> &GameModel::getGhostsInternal()
 {
@@ -24,159 +33,85 @@ QList<Piece *> &GameModel::getPiecesInternal()
         {
         QList<Piece *> lstPieces;
 
-        for(unsigned uiXMax = 240, uiX = 30; uiX < uiXMax; uiX += 18)
-            {
-            lstPieces.append(new PacDot(uiX, 55));
-            lstPieces.append(new PacDot(uiX, 365));
-            }
+        for(unsigned uiX : { 30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228 })
+            for(unsigned uiY : { 55, 365 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiXMax = 490, uiX = 282; uiX < uiXMax; uiX += 18)
-            {
-            lstPieces.append(new PacDot(uiX, 55));
-            lstPieces.append(new PacDot(uiX, 365));
-            }
+        for(unsigned uiX: { 282, 300, 318, 336, 354, 372, 390, 408, 426, 444, 462, 480 })
+            for(unsigned uiY : { 55, 365 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiXMax = 490, uiX = 30; uiX < uiXMax; uiX += 18)
-            {
-            lstPieces.append(new PacDot(uiX, 120));
-            lstPieces.append(new PacDot(uiX, 515));
-            }
+        for(unsigned uiX : { 30, 48, 66, 84, 102, 120, 138, 156, 174, 192, 210, 228, 246, 264, 282, 300, 318, 336, 354, 372, 390, 408, 426, 444, 462, 480 })
+            for(unsigned uiY : { 120, 515 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiXMax = 125, uiX = 30; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 30, 48, 66, 84, 102, 120 })
             lstPieces.append(new PacDot(uiX, 170));
 
-        for(unsigned uiXMax = 240, uiX = 174; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 174, 192, 210, 228 })
             lstPieces.append(new PacDot(uiX, 170));
 
-        for(unsigned uiXMax = 340, uiX = 282; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 282, 300, 318, 336 })
             lstPieces.append(new PacDot(uiX, 170));
 
-        for(unsigned uiXMax = 490, uiX = 390; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 390, 408, 426, 444, 462, 480 })
             lstPieces.append(new PacDot(uiX, 170));
 
-        for(unsigned uiXMax = 350, uiX = 174; uiX < uiXMax; uiX += 18)
-            {
-            lstPieces.append(new PacDot(uiX, 220));
-            lstPieces.append(new PacDot(uiX, 315));
-            }
+        for(unsigned uiX : { 30, 48, 66, 444, 462, 480 })
+            if((uiX == 30) || (uiX == 480))
+                lstPieces.append(new PowerPellet(uiX - 4, 411));
+            else
+                lstPieces.append(new PacDot(uiX, 415));
 
-        for(unsigned uiXMax = 190, uiX = 12; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 265));
-
-        for(unsigned uiXMax = 500, uiX = 336; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 265));
-
-        for(unsigned uiXMax = 80, uiX = 30; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 120, 138, 156, 174, 192, 210, 228, 246, 264, 282, 300, 318, 336, 354, 372, 390 })
             lstPieces.append(new PacDot(uiX, 415));
 
-        for(unsigned uiXMax = 400, uiX = 120; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 415));
-
-        for(unsigned uiXMax = 490, uiX = 444; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 415));
-
-        for(unsigned uiXMax = 135, uiX = 30; uiX < uiXMax; uiX += 18)
+        for(unsigned uiX : { 30, 48, 66, 84, 102, 120, 174, 192, 210, 228, 282, 300, 318, 336, 390, 408, 426, 444, 462, 480 })
             lstPieces.append(new PacDot(uiX, 465));
 
-        for(unsigned uiXMax = 240, uiX = 174; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 465));
+        for(unsigned uiY : { 73, 88, 103 })
+            for(unsigned uiX : {30, 120, 228, 282, 390, 480 })
+                if(((uiX == 30) || (uiX == 480)) && (uiY == 88))
+                    lstPieces.append(new PowerPellet(uiX - 4, uiY - 4));
+                else
+                    lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiXMax = 340, uiX = 282; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 465));
+        for(unsigned uiY : { 137, 153 })
+            for(unsigned uiX : { 30, 120, 174, 336, 390, 480 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiXMax = 490, uiX = 390; uiX < uiXMax; uiX += 18)
-            lstPieces.append(new PacDot(uiX, 465));
+        for(unsigned uiY : { 188, 204, 219, 235, 250, 265 })
+            for(unsigned uiX : { 120, 390 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiYMax = 105, uiY = 73; uiY < uiYMax; uiY += 15)
-            {
-            lstPieces.append(new PacDot(30, uiY));
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(228, uiY));
-            lstPieces.append(new PacDot(282, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            lstPieces.append(new PacDot(480, uiY));
-            }
+        for(unsigned uiY : { 282, 299, 316, 333, 350 })
+            for(unsigned uiX : { 120, 390 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiYMax = 160, uiY = 137; uiY < uiYMax; uiY += 16)
-            {
-            lstPieces.append(new PacDot(30, uiY));
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(174, uiY));
-            lstPieces.append(new PacDot(336, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            lstPieces.append(new PacDot(480, uiY));
-            }
+        for(unsigned uiY : { 385, 400 })
+            for(unsigned uiX : { 30, 120, 228, 282, 390, 480 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiYMax = 210, uiY = 186; uiY < uiYMax; uiY += 17)
-            {
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(228, uiY));
-            lstPieces.append(new PacDot(282, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            }
+        for(unsigned uiY : { 432, 449 })
+            for(unsigned uiX : { 66, 120, 174, 336, 390, 444 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
-        for(unsigned uiYMax = 275, uiY = 220; uiY < uiYMax; uiY += 15)
-            {
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            }
-
-        for(unsigned uiYMax = 275, uiY = 235; uiY < uiYMax; uiY += 15)
-            {
-            lstPieces.append(new PacDot(174, uiY));
-            lstPieces.append(new PacDot(336, uiY));
-            }
-
-        for(unsigned uiYMax = 360, uiY = 282; uiY < uiYMax; uiY += 17)
-            {
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            }
-
-        for(unsigned uiYMax = 310, uiY = 282; uiY < uiYMax; uiY += 15)
-            {
-            lstPieces.append(new PacDot(174, uiY));
-            lstPieces.append(new PacDot(336, uiY));
-            }
-
-        for(unsigned uiYMax = 360, uiY = 332; uiY < uiYMax; uiY += 17)
-            {
-            lstPieces.append(new PacDot(174, uiY));
-            lstPieces.append(new PacDot(336, uiY));
-            }
-
-        for(unsigned uiYMax = 410, uiY = 385; uiY < uiYMax; uiY += 15)
-            {
-            lstPieces.append(new PacDot(30, uiY));
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(228, uiY));
-            lstPieces.append(new PacDot(282, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            lstPieces.append(new PacDot(480, uiY));
-            }
-
-        for(unsigned uiYMax = 460, uiY = 432; uiY < uiYMax; uiY += 17)
-            {
-            lstPieces.append(new PacDot(66, uiY));
-            lstPieces.append(new PacDot(120, uiY));
-            lstPieces.append(new PacDot(174, uiY));
-            lstPieces.append(new PacDot(336, uiY));
-            lstPieces.append(new PacDot(390, uiY));
-            lstPieces.append(new PacDot(444, uiY));
-            }
-
-        for(unsigned uiYMax = 500, uiY = 480; uiY < uiYMax; uiY += 17)
-            {
-            lstPieces.append(new PacDot(30, uiY));
-            lstPieces.append(new PacDot(228, uiY));
-            lstPieces.append(new PacDot(282, uiY));
-            lstPieces.append(new PacDot(480, uiY));
-            }
+        for(unsigned uiY : { 480, 497 })
+            for(unsigned uiX : { 30, 228, 282, 480 })
+                lstPieces.append(new PacDot(uiX, uiY));
 
         setPieces(lstPieces);
         }
 
     return(mLstPieces);
+}
+
+void GameModel::setFruit(const QList<Fruit *> &lstFruit)
+{
+    mLstFruit = lstFruit;
+
+    setChanged();
+    notifyObservers("Fruit");
 }
 
 void GameModel::setGhosts(const QList<Ghost *> &lstGhosts)
@@ -205,10 +140,28 @@ void GameModel::setPieces(const QList<Piece *> &lstPieces)
 
 GameModel::GameModel()
     :   Observable()
+    ,   mObjPacMan(245, 405)
 { }
 
 GameModel::~GameModel()
 {
+    if(!getFruitInternal().isEmpty())
+        {
+        for(Piece *ptrFruit : getFruitInternal())
+            delete ptrFruit;
+
+        getFruitInternal().clear();
+        }
+
+
+    if(!getGhostsInternal().isEmpty())
+        {
+        for(Piece *ptrGhost : getGhostsInternal())
+            delete ptrGhost;
+
+        getGhostsInternal().clear();
+        }
+
     if(!getPiecesInternal().isEmpty())
         {
         for(Piece *ptrPiece : getPiecesInternal())
@@ -221,6 +174,11 @@ GameModel::~GameModel()
 unsigned GameModel::getCurrentScore() const
 {
     return(muiCurrentScore);
+}
+
+const QList<Fruit *> &GameModel::getFruit()
+{
+    return(getFruitInternal());
 }
 
 const QList<Ghost *> &GameModel::getGhosts()

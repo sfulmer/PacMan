@@ -3,7 +3,7 @@
 using namespace net::draconia::games::pacman::model;
 
 Blinky::Blinky()
-    :   Ghost(215, 260, NoDirection, "Blinky")
+    :   Ghost(245, 210, NoDirection, "Blinky")
 { }
 
 Blinky::Blinky(const Blinky &refCopy)

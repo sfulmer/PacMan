@@ -72,6 +72,20 @@ void GamePanel::paintEvent(QPaintEvent *event)
 
     painter.drawImage(QRectF(event->rect().x(), event->rect().y() + 30, 512, 512), getGameBoardImage());
 
+    for(const Piece *ptrPiece : getModel().getPieces())
+        {
+        Piece &refPiece = const_cast<Piece &>(*ptrPiece);
+
+        refPiece.render(getFrame(), painter);
+        }
+
+    for(const Fruit *ptrFruit : getModel().getFruit())
+        {
+        Fruit &refFruit = const_cast<Fruit &>(*ptrFruit);
+
+        refFruit.render(getFrame(), painter);
+        }
+
     for(const Ghost *ptrGhost : getModel().getGhosts())
         {
         Ghost &refGhost = const_cast<Ghost &>(*ptrGhost);
@@ -79,12 +93,7 @@ void GamePanel::paintEvent(QPaintEvent *event)
         refGhost.render(getFrame(), painter);
         }
 
-    for(const Piece *ptrPiece : getModel().getPieces())
-        {
-        Piece &refPiece = const_cast<Piece &>(*ptrPiece);
-
-        refPiece.render(getFrame(), painter);
-        }
+    getModel().getPacMan().render(getFrame(), painter);
 
     painter.restore();
 }

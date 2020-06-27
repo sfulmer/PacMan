@@ -120,7 +120,7 @@ int PacMan::getSeconds() const
 
 QSize PacMan::getSize() const
 {
-    return(QSize(18, 18));
+    return(QSize(24, 24));
 }
 
 bool PacMan::isPoweredUp() const
@@ -133,9 +133,9 @@ void PacMan::render(qint64 frame, QPainter &refPainter)
     refPainter.save();
 
     if((frame % 2) == 0)
-        refPainter.drawImage(QRectF(getTopLeft(), getSize()), getClosedMouthImage());
-    else
         refPainter.drawImage(QRectF(getTopLeft(), getSize()), getOpenMouthImage());
+    else
+        refPainter.drawImage(QRectF(getTopLeft(), getSize()), getClosedMouthImage());
 
     refPainter.restore();
 }
