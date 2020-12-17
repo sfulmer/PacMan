@@ -15,7 +15,7 @@ namespace net
                     class Clyde : public Ghost
                     {
                     public:
-                        Clyde();
+                        Clyde(const int iX = 0, const int iY = 0);
                         Clyde(const Clyde &refCopy);
                         Clyde(Clyde &refToMove);
 

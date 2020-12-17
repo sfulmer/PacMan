@@ -36,7 +36,11 @@ QAction *GameWindow::getExitAction()
 GamePanel *GameWindow::getMainPanel()
 {
     if(mPnlMain == nullptr)
+        {
         mPnlMain = new GamePanel(this, getController());
+
+        mPnlMain->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
+        }
 
     return(mPnlMain);
 }

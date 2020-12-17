@@ -26,7 +26,9 @@ namespace net
                         QList<Ghost *> mLstGhosts;
                         QList<Piece *> mLstPieces;
                         PacMan mObjPacMan;
-                        unsigned muiCurrentScore, muiHighScore, muiLevel;
+                        unsigned muiCurrentScore, muiHighScore, muiLevel, muiOneUps;
+
+                        static const int msiVerticalSpacing = 50;
                     protected:
                         QList<Fruit *> &getFruitInternal();
                         QList<Ghost *> &getGhostsInternal();
@@ -44,13 +46,17 @@ namespace net
                         const QList<Ghost *> &getGhosts();
                         unsigned getHighScore() const;
                         unsigned getLevel() const;
+                        unsigned getOneUps() const;
                         PacMan &getPacMan() const;
                         const QList<Piece *> &getPieces();
                         bool isStarted() const;
                         void setCurrentScore(const unsigned uiCurrentScore);
                         void setHighScore(const unsigned uiHighScore);
                         void setLevel(const unsigned uiLevel);
+                        void setOneUps(const unsigned uiOneUps);
                         void setStarted(const bool bStarted);
+
+                        static int getVerticalSpacing();
                     };
                 }
             }

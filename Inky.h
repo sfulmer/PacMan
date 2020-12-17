@@ -15,7 +15,7 @@ namespace net
                     class Inky : public Ghost
                     {
                     public:
-                        Inky();
+                        Inky(const int iX = 0, const int iY = 0);
                         Inky(const Inky &refCopy);
                         Inky(Inky &refToMove);
 

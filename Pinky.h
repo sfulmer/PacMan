@@ -15,7 +15,7 @@ namespace net
                     class Pinky : public Ghost
                     {
                     public:
-                        Pinky();
+                        Pinky(const int iX = 0, const int iY = 0);
                         Pinky(const Pinky &refCopy);
                         Pinky(Pinky &refToMove);
 

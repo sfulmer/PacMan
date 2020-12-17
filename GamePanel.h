@@ -37,6 +37,7 @@ namespace net
                         GameModel &getModel();
                         void initControls();
                         void initPanel();
+                        virtual void keyPressEvent(QKeyEvent *event);
                         void paintEvent(QPaintEvent *event);
                     public:
                         GamePanel(GameWindow *parent);

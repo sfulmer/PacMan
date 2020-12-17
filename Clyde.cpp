@@ -2,8 +2,8 @@
 
 using namespace net::draconia::games::pacman::model;
 
-Clyde::Clyde()
-    :   Ghost(215, 260, NoDirection, "Clyde")
+Clyde::Clyde(const int iX, const int iY)
+    :   Ghost(215 + iX, 260 + iY, NoDirection, "Clyde")
 { }
 
 Clyde::Clyde(const Clyde &refCopy)

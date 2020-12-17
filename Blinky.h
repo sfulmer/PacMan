@@ -15,7 +15,7 @@ namespace net
                     class Blinky : public Ghost
                     {
                     public:
-                        Blinky();
+                        Blinky(const int iX = 0, const int iY = 0);
                         Blinky(const Blinky &refCopy);
                         Blinky(Blinky &refToMove);
 

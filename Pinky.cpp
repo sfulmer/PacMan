@@ -2,8 +2,8 @@
 
 using namespace net::draconia::games::pacman::model;
 
-Pinky::Pinky()
-    :   Ghost(285, 260, NoDirection, "Pinky")
+Pinky::Pinky(const int iX, const int iY)
+    :   Ghost(285 + iX, 260 + iY, NoDirection, "Pinky")
 { }
 
 Pinky::Pinky(const Pinky &refCopy)
